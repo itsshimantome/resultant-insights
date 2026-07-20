@@ -51,7 +51,7 @@ function Index() {
           </a>
           <div className="flex shrink-0 items-center gap-2">
             <Select>
-              <SelectTrigger className="w-[130px] sm:w-[150px]">
+              <SelectTrigger className="w-[100px] sm:w-[150px]">
                 <SelectValue placeholder="Iteration" />
               </SelectTrigger>
               <SelectContent>
@@ -61,7 +61,7 @@ function Index() {
               </SelectContent>
             </Select>
             <Select>
-              <SelectTrigger className="w-[130px] sm:w-[150px]">
+              <SelectTrigger className="w-[110px] sm:w-[150px]">
                 <SelectValue placeholder="Agent count" />
               </SelectTrigger>
               <SelectContent>

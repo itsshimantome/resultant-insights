@@ -190,12 +190,22 @@ function Index() {
 
             {/* Image */}
             <div className="order-2">
-              <div className="relative w-full overflow-hidden rounded-2xl border border-border/60 bg-black shadow-2xl shadow-black/50 aspect-video">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_60%)]" />
+              <div className="relative flex w-full items-center justify-center overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-muted via-background to-muted shadow-2xl shadow-black/50 aspect-video">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.25),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--primary)/0.15),transparent_50%)]" />
+                <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
                 <div className="absolute left-3 top-3 flex items-center gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+                </div>
+                <div className="relative z-10 flex flex-col items-center gap-3 text-muted-foreground">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border/60 bg-background/80 shadow-lg backdrop-blur-md">
+                    <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 1.125V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 1.5v-1.5c0-.621-.504-1.125-1.125-1.125M18.75 5.625v1.5c0 .621-.504 1.125-1.125 1.125m-15 0v-1.5c0-.621.504-1.125 1.125-1.125m15 0v1.5c0-.621-.504-1.125-1.125-1.125m-15 0v1.5c0 .621-.504 1.125-1.125 1.125M18.75 5.625h-15a1.125 1.125 0 01-1.125-1.125M18.75 5.625c0-.621-.504-1.125-1.125-1.125H5.625a1.125 1.125 0 00-1.125 1.125m13.5 0v1.5c0 .621.504 1.125 1.125 1.125m-15 0h7.5c.621 0 1.125-.504 1.125-1.125V5.625a1.125 1.125 0 00-1.125-1.125m-9.75 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125h1.5a1.125 1.125 0 001.125-1.125v-1.5a1.125 1.125 0 00-1.125-1.125H3.375z" />
+                    </svg>
+                  </div>
+                  <span className="text-xs font-medium tracking-wide uppercase">Result preview</span>
                 </div>
               </div>
               <div className="mt-3 flex justify-end">

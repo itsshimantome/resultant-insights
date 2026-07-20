@@ -45,13 +45,13 @@ function Index() {
         <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 sm:flex sm:justify-between">
           <a
             href="/"
-            className="truncate text-2xl font-black tracking-tight text-foreground"
+            className="truncate text-xl font-black tracking-tight text-foreground sm:text-2xl"
           >
             Resultant
           </a>
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <Select>
-              <SelectTrigger className="w-[100px] sm:w-[150px]">
+              <SelectTrigger className="h-9 w-[92px] text-xs sm:h-10 sm:w-[150px] sm:text-sm">
                 <SelectValue placeholder="Iteration" />
               </SelectTrigger>
               <SelectContent>
@@ -61,7 +61,7 @@ function Index() {
               </SelectContent>
             </Select>
             <Select>
-              <SelectTrigger className="w-[110px] sm:w-[150px]">
+              <SelectTrigger className="h-9 w-[100px] text-xs sm:h-10 sm:w-[150px] sm:text-sm">
                 <SelectValue placeholder="Agent count" />
               </SelectTrigger>
               <SelectContent>

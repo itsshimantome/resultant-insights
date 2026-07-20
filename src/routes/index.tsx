@@ -64,16 +64,27 @@ function Index() {
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-background font-sans text-foreground antialiased">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[24rem] w-[24rem] rounded-full bg-primary/5 blur-3xl" />
+        {/* Top-center glow */}
+        <div className="absolute -top-32 left-1/2 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
+        {/* Top-right cool accent */}
+        <div className="absolute -top-24 right-0 h-[28rem] w-[28rem] rounded-full bg-primary/15 blur-3xl" />
+        {/* Bottom-left warm accent */}
+        <div className="absolute -bottom-24 -left-24 h-[32rem] w-[32rem] rounded-full bg-primary/10 blur-3xl" />
+        {/* Bottom-right glow */}
+        <div className="absolute bottom-0 right-0 h-[26rem] w-[26rem] rounded-full bg-primary/10 blur-3xl" />
+        {/* Diagonal gradient wash */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+        {/* Grid */}
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
               "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
             backgroundSize: "48px 48px",
           }}
         />
+        {/* Subtle radial vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_50%,hsl(var(--background)/0.85)_100%)]" />
       </div>
 
       {/* Header */}

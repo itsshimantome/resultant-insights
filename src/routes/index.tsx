@@ -36,39 +36,73 @@ const years = Array.from(
   { length: currentYear - 1990 + 1 },
   (_, i) => currentYear - i,
 );
+const iterations = Array.from({ length: 10 }, (_, i) => i + 1);
+const agentCounts = [1, 2, 3];
+
+function Logo() {
+  return (
+    <a href="/" className="group inline-flex items-center gap-2">
+      <span
+        aria-hidden
+        className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-primary to-primary/60 text-primary-foreground shadow-[0_0_20px_-4px_hsl(var(--primary)/0.6)] ring-1 ring-inset ring-white/10"
+      >
+        <span className="text-sm font-black tracking-tighter">R</span>
+        <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_hsl(150_80%_50%)]" />
+      </span>
+      <span className="text-lg font-black tracking-tight sm:text-xl">
+        <span className="text-foreground">Result</span>
+        <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+          ant
+        </span>
+      </span>
+    </a>
+  );
+}
 
 function Index() {
   return (
-    <div className="flex min-h-screen flex-col bg-background font-sans text-foreground">
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-background font-sans text-foreground antialiased">
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[24rem] w-[24rem] rounded-full bg-primary/5 blur-3xl" />
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+      </div>
+
       {/* Header */}
-      <header className="border-b border-border bg-background">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-4 sm:flex sm:justify-between">
-          <a
-            href="/"
-            className="truncate text-xl font-black tracking-tight text-foreground sm:text-2xl"
-          >
-            Resultant
-          </a>
+      <header className="sticky top-0 z-20 border-b border-border/60 bg-background/70 backdrop-blur-xl">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3.5 sm:flex sm:justify-between sm:py-4">
+          <Logo />
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <Select>
-              <SelectTrigger className="h-9 w-[92px] text-xs sm:h-10 sm:w-[150px] sm:text-sm">
+              <SelectTrigger className="h-9 w-[84px] text-xs sm:h-10 sm:w-[140px] sm:text-sm">
                 <SelectValue placeholder="Iteration" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">Iteration 1</SelectItem>
-                <SelectItem value="2">Iteration 2</SelectItem>
-                <SelectItem value="3">Iteration 3</SelectItem>
+              <SelectContent className="max-h-64">
+                {iterations.map((i) => (
+                  <SelectItem key={i} value={String(i)}>
+                    {i}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Select>
-              <SelectTrigger className="h-9 w-[100px] text-xs sm:h-10 sm:w-[150px] sm:text-sm">
+              <SelectTrigger className="h-9 w-[92px] text-xs sm:h-10 sm:w-[140px] sm:text-sm">
                 <SelectValue placeholder="Agent count" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">1 Agent</SelectItem>
-                <SelectItem value="5">5 Agents</SelectItem>
-                <SelectItem value="10">10 Agents</SelectItem>
-                <SelectItem value="25">25 Agents</SelectItem>
+                {agentCounts.map((a) => (
+                  <SelectItem key={a} value={String(a)}>
+                    {a}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -79,17 +113,23 @@ function Index() {
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 py-10 md:py-16">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
-            {/* Form - first on mobile, left on md+ */}
-            <div className="order-1 md:order-1">
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
-                <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-                  Check your result
-                </h1>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Enter your details to fetch your board result.
-                </p>
+            {/* Form */}
+            <div className="order-1">
+              <div className="rounded-2xl border border-border/60 bg-card/60 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl md:p-8">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_hsl(150_80%_50%)]" />
+                    Live
+                  </div>
+                  <h1 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
+                    Check your result
+                  </h1>
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Enter your details to fetch your board result.
+                  </p>
+                </div>
                 <form
-                  className="mt-6 space-y-4"
+                  className="space-y-4"
                   onSubmit={(e) => e.preventDefault()}
                 >
                   <div className="space-y-2">
@@ -130,26 +170,34 @@ function Index() {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="roll">Roll no.</Label>
-                    <Input id="roll" inputMode="numeric" placeholder="e.g. 123456" />
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="roll">Roll no.</Label>
+                      <Input id="roll" inputMode="numeric" placeholder="123456" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="reg">Registration no.</Label>
+                      <Input id="reg" inputMode="numeric" placeholder="9876543210" />
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="reg">Registration no.</Label>
-                    <Input id="reg" inputMode="numeric" placeholder="e.g. 9876543210" />
-                  </div>
-
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full font-semibold">
                     Get result
                   </Button>
                 </form>
               </div>
             </div>
 
-            {/* Image - second on mobile (below), right on md+ */}
-            <div className="order-2 md:order-2">
-              <div className="relative w-full overflow-hidden rounded-2xl border border-border bg-black shadow-sm aspect-video" />
+            {/* Image */}
+            <div className="order-2">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-border/60 bg-black shadow-2xl shadow-black/50 aspect-video">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_60%)]" />
+                <div className="absolute left-3 top-3 flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+                </div>
+              </div>
               <div className="mt-3 flex justify-end">
                 <Button variant="outline" size="sm">
                   <Download className="mr-2 h-4 w-4" />
@@ -162,7 +210,7 @@ function Index() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-background">
+      <footer className="border-t border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="mx-auto w-full max-w-6xl px-4 py-6 text-center text-sm text-muted-foreground">
           © {currentYear} Resultant. All rights reserved. Developed by Itsshimanto.
         </div>
